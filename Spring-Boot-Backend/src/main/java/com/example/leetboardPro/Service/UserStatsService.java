@@ -1,0 +1,26 @@
+package com.example.leetboardPro.Service;
+import com.example.leetboardPro.DTO.UserStatsDTO;
+import com.example.leetboardPro.Model.UserStats;
+import com.example.leetboardPro.Repository.UserStatsRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+
+@Service
+public class UserStatsService {
+    @Autowired
+    private UserStatsRepository userStatsRepository;
+    public List<UserStatsDTO> getAllStats(){
+        return userStatsRepository.findAll()
+                .stream()
+                .map(stats -> new UserStatsDTO(
+                        stats.getLeetcodeUsername(),
+                        stats.getEasyCount(),
+                        stats.getMediumCount(),
+                        stats.getHardCount(),
+                        stats.getLastSync()
+                ))
+                .toList();
+    }
+}

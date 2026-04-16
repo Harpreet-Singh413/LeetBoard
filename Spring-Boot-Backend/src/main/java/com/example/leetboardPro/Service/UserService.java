@@ -1,0 +1,32 @@
+package com.example.leetboardPro.Service;
+
+import com.example.leetboardPro.DTO.UsersRequestDTO;
+import com.example.leetboardPro.Model.Users;
+import com.example.leetboardPro.Repository.UserRepo;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import static com.example.leetboardPro.Mapper.UsersMapper.toEntity;
+
+@Service
+public class UserService {
+    @Autowired
+    private UserRepo userRepo;
+
+    @Autowired
+    private LeetCodeService leetCodeService;
+
+    public String registerUser(@RequestBody UsersRequestDTO dto){
+        boolean ifExistsAlready = userRepo.existsByLeetUsername(dto.getLeetUsername());
+        if(ifExistsAlready){
+            throw new RuntimeException("User already exists");
+        }
+        else {
+            Users user = toEntity(dto);
+            userRepo.save(user);
+            leetCodeService.syncAndSaveUserStats(user.getLeetUsername());
+        }
+        return "User Registered";
+    }
+}

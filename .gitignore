@@ -1,0 +1,60 @@
+# ==========================================
+# 1. Backend (Spring Boot / Maven)
+# ==========================================
+target/
+*.class
+*.jar
+*.war
+*.ear
+*.log
+.mvn/
+mvnw
+mvnw.cmd
+
+# --- Database & Security ---
+# Ignoring the main properties file to hide DB credentials
+application.properties
+# If you use a separate local file for secrets
+application-local.properties
+.env
+
+# ==========================================
+# 2. Frontend (React / Node.js)
+# ==========================================
+node_modules/
+dist/
+build/
+.eslintcache
+.stylelintcache
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# React Environment variables
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# ==========================================
+# 3. IDEs & Editors
+# ==========================================
+# IntelliJ IDEA
+.idea/
+*.iws
+*.iml
+*.ipr
+out/
+
+# VS Code
+.vscode/
+bin/
+
+# ==========================================
+# 4. Operating System
+# ==========================================
+.DS_Store
+.DS_Store?
+_MACOSX
+Thumbs.db
+ehthumbs.db
