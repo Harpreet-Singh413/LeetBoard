@@ -43,7 +43,6 @@ public class LeetCodeService {
 
         // 2. Prepare Entity (Update existing or Create new)
         UserStats stats = repository.findByLeetcodeUsername(username).orElse(new UserStats());
-
         stats.setUser(user);
         stats.setLeetcodeUsername(username);
         stats.setLastSync(LocalDateTime.now());

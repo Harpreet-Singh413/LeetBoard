@@ -11,10 +11,10 @@ import java.time.LocalDateTime;
 @Setter
 public class UserStats {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @OneToOne
-    @MapsId
     @JoinColumn(name = "user_id")
     private Users user;
 
