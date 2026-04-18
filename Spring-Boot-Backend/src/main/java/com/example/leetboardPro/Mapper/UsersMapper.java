@@ -5,7 +5,7 @@ import com.example.leetboardPro.DTO.UsersRequestDTO;
 import com.example.leetboardPro.Model.Users;
 
 public class UsersMapper {
-    public static Users toEntity(UsersRequestDTO dto){
+    public static Users toUserEntity(UsersRequestDTO dto){
         Users user = new Users();
         user.setUsername(dto.getUsername());
         user.setLeetUsername(dto.getLeetUsername());
@@ -14,7 +14,7 @@ public class UsersMapper {
         return user;
     }
 
-    public static UserResponseDTO toDto(Users user){
+    public static UserResponseDTO toUserDto(Users user){
         UserResponseDTO dto = new UserResponseDTO();
         dto.setId(user.getId());
         dto.setUsername(user.getUsername());

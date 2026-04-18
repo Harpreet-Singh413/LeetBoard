@@ -9,4 +9,6 @@ import java.util.Optional;
 @Repository
 public interface UserStatsRepository extends JpaRepository<UserStats,Long> {
     Optional<UserStats> findByLeetcodeUsername(String username);
+
+    Optional<UserStats> findByUserId(Long id);
 }

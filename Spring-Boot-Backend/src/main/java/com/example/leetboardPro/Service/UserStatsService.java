@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+import static com.example.leetboardPro.Mapper.UserStatsMapper.toUserStatsDto;
+
 @Service
 public class UserStatsService {
     @Autowired
@@ -22,5 +24,11 @@ public class UserStatsService {
                         stats.getLastSync()
                 ))
                 .toList();
+    }
+
+    public UserStatsDTO getUserStats(Long id) {
+        UserStats stats =  userStatsRepository.findByUserId(id).orElse(null);
+        UserStatsDTO dto = toUserStatsDto(stats);
+        return dto;
     }
 }

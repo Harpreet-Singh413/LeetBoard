@@ -3,7 +3,6 @@ package com.example.leetboardPro.Service;
 
 import com.example.leetboardPro.Client.LeetCodeClient;
 import com.example.leetboardPro.DTO.LeetCodeRawData;
-import com.example.leetboardPro.DTO.UserResponseDTO;
 import com.example.leetboardPro.DTO.UserStatsDTO;
 import com.example.leetboardPro.Model.UserStats;
 import com.example.leetboardPro.Model.Users;

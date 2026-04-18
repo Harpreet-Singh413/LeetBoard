@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
-import static com.example.leetboardPro.Mapper.UsersMapper.toEntity;
+import static com.example.leetboardPro.Mapper.UsersMapper.toUserEntity;
 
 @Service
 public class UserService {
@@ -25,7 +25,7 @@ public class UserService {
             throw new RuntimeException("User already exists");
         }
         else {
-            Users user = toEntity(dto);
+            Users user = toUserEntity(dto);
             userRepo.save(user);
             leetCodeService.syncAndSaveUserStats(user.getLeetUsername());
         }
