@@ -1,5 +1,6 @@
 package com.example.leetboardPro.Service;
 import com.example.leetboardPro.DTO.UserStatsDTO;
+import com.example.leetboardPro.Mapper.UserStatsMapper;
 import com.example.leetboardPro.Model.UserStats;
 import com.example.leetboardPro.Repository.UserStatsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +31,12 @@ public class UserStatsService {
         UserStats stats =  userStatsRepository.findByUserId(id).orElse(null);
         UserStatsDTO dto = toUserStatsDto(stats);
         return dto;
+    }
+
+    public List<UserStatsDTO> getLeaderBoard() {
+        return userStatsRepository.findAllByOrderByHardCountDescMediumCountDescEasyCountDesc()
+                .stream()
+                .map(UserStatsMapper::toUserStatsDto)
+                .toList();
     }
 }

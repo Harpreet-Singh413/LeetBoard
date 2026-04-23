@@ -36,4 +36,15 @@ public class UserStatsController {
         }
         return new ResponseEntity<>(user,HttpStatus.OK);
     }
+
+    @GetMapping("/stats/leaderboard")
+    public ResponseEntity<List<UserStatsDTO>> getLeaderBoard(){
+        List<UserStatsDTO> leaderboard = userStatsService.getLeaderBoard();
+        if(leaderboard.isEmpty()){
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        else {
+            return new ResponseEntity<List<UserStatsDTO>>(leaderboard,HttpStatus.OK);
+        }
+    }
 }
