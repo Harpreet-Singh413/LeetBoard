@@ -45,8 +45,7 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
                 ? "http://localhost:3000/dashboard?token=" + token
                 : "http://localhost:3000/onboarding?token=" + token;
 
-//        getRedirectStrategy().sendRedirect(request, response, redirectUrl);
-        response.setContentType("application/json");
-        response.getWriter().write("{\"token\":\"" + token + "\", \"isOnboarded\":" + user.isOnboarded() + "}");
+       getRedirectStrategy().sendRedirect(request, response, redirectUrl);
+    
     }
 }
