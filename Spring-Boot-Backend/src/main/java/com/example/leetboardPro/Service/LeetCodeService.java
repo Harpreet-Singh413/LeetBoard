@@ -27,26 +27,24 @@ public class LeetCodeService {
     }
 
     @Transactional
-    public UserStatsDTO syncAndSaveUserStats(String username) {
-        // 1. Fetch from LeetCode
-        LeetCodeRawData rawResponse = leetCodeClient.fetchUserData(username);
+    public UserStatsDTO syncAndSaveUserStats(Users user) {
+        LeetCodeRawData rawResponse = leetCodeClient.fetchUserData(user.getLeetUsername());
 
         if (rawResponse == null || rawResponse.getData().getMatchedUser() == null) {
-            throw new RuntimeException("User '" + username + "' not found on LeetCode.");
+            throw new RuntimeException("User not found on LeetCode.");
         }
 
-        Users user = userRepo.findByLeetUsername(username);
-        if(user == null){
-            throw new RuntimeException("User not exists or not registered");
-        }
+        // Re-fetch to get a managed entity ← this is the fix
+        Users managedUser = userRepo.findById(user.getId())
+                .orElseThrow(() -> new RuntimeException("User not found in DB"));
 
-        // 2. Prepare Entity (Update existing or Create new)
-        UserStats stats = repository.findByLeetcodeUsername(username).orElse(new UserStats());
-        stats.setUser(user);
-        stats.setLeetcodeUsername(username);
+        UserStats stats = repository.findByLeetcodeUsername(user.getLeetUsername())
+                .orElse(new UserStats());
+
+        stats.setUser(managedUser); // ← use managed entity, not detached one
+        stats.setLeetcodeUsername(user.getLeetUsername());
         stats.setLastSync(LocalDateTime.now());
 
-        // 3. Extract difficulty counts from the list
         rawResponse.getData().getMatchedUser().getSubmitStats().getAcSubmissionNum()
                 .forEach(stat -> {
                     switch (stat.getDifficulty()) {
@@ -56,16 +54,13 @@ public class LeetCodeService {
                     }
                 });
 
-        // 4. Save to Database
-        UserStats savedEntity = repository.save(stats);
-
-        // 5. Return sanitized Response DTO
+        UserStats saved = repository.save(stats);
         return new UserStatsDTO(
-                savedEntity.getLeetcodeUsername(),
-                savedEntity.getEasyCount(),
-                savedEntity.getMediumCount(),
-                savedEntity.getHardCount(),
-                savedEntity.getLastSync()
+                saved.getLeetcodeUsername(),
+                saved.getEasyCount(),
+                saved.getMediumCount(),
+                saved.getHardCount(),
+                saved.getLastSync()
         );
     }
 }

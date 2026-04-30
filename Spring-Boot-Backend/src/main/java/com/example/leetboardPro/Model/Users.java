@@ -20,9 +20,14 @@ public class Users {
     @Column(nullable = false)
     private String username;
 
-    @Column(name = "leet_Username" , nullable = false , unique = true)
+    @Column(name = "leet_Username" , unique = true)
     private String leetUsername;
+
+    @Column(nullable = false, unique = true)
+    private String email;
 
     private String course;
     private Integer semester;
+
+    private boolean isOnboarded = false;
 }

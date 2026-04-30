@@ -26,8 +26,9 @@ public class UserStatsScheduler {
         List<Users> users = userRepo.findAll();
 
         for(Users user : users){
+            if(user.getLeetUsername() == null) continue;
             try {
-                leetCodeService.syncAndSaveUserStats(user.getLeetUsername());
+                leetCodeService.syncAndSaveUserStats(user);
                 Thread.sleep(1500);
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
