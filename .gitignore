@@ -1,40 +1,64 @@
 # ==========================================
 # 1. Backend (Spring Boot / Maven)
 # ==========================================
+HELP.md
 target/
 *.class
 *.jar
 *.war
 *.ear
 *.log
-.mvn/
-mvnw
-mvnw.cmd
+
+# Maven wrapper
+.mvn/wrapper/maven-wrapper.jar
+
+# STS (Spring Tool Suite)
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+# NetBeans
+nbproject/private/
+nbbuild/
+nbdist/
+.nb-gradle/
 
 # --- Database & Security ---
-# Ignoring the main properties file to hide DB credentials
+# Ignoring the properties files to hide DB credentials and secrets
 application.properties
-# If you use a separate local file for secrets
 application-local.properties
-.env
+application-dev.properties
+application-prod.properties
 
 # ==========================================
 # 2. Frontend (React / Node.js)
 # ==========================================
 node_modules/
 dist/
+dist-ssr/
 build/
 .eslintcache
 .stylelintcache
+
+# Logs
+logs/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
-# React Environment variables
+# Environment variables
+.env
 .env.local
 .env.development.local
 .env.test.local
 .env.production.local
+*.local
 
 # ==========================================
 # 3. IDEs & Editors
@@ -47,7 +71,15 @@ yarn-error.log*
 out/
 
 # VS Code
-.vscode/
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/launch.json
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
 bin/
 
 # ==========================================

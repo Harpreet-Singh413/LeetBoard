@@ -57,6 +57,7 @@ public class LeetCodeService {
         UserStats saved = repository.save(stats);
         return new UserStatsDTO(
                 saved.getLeetcodeUsername(),
+                saved.getUser(),
                 saved.getEasyCount(),
                 saved.getMediumCount(),
                 saved.getHardCount(),

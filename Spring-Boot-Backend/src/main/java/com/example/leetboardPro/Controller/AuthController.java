@@ -6,14 +6,12 @@ import com.example.leetboardPro.Service.AuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api/auth")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "localhost:3000")
 public class AuthController {
 
     private final AuthService authService;
@@ -23,7 +21,7 @@ public class AuthController {
             @RequestBody OnboardingRequestDTO dto,
             @AuthenticationPrincipal Users currentUser) {
 
-        authService.completeOnboarding(currentUser, dto.getLeetUsername());
+        authService.completeOnboarding(currentUser, dto);
         return ResponseEntity.ok("Onboarding complete");
     }
 }

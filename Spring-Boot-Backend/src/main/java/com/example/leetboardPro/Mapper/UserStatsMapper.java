@@ -16,6 +16,7 @@ public class UserStatsMapper {
 
     public static UserStatsDTO toUserStatsDto(UserStats stats){
         UserStatsDTO dto = new UserStatsDTO();
+        dto.setUser(stats.getUser());
         dto.setLeetcodeUsername(stats.getLeetcodeUsername());
         dto.setEasyCount(stats.getEasyCount());
         dto.setMediumCount(stats.getMediumCount());

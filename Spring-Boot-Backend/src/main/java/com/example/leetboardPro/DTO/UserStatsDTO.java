@@ -1,5 +1,6 @@
 package com.example.leetboardPro.DTO;
 
+import com.example.leetboardPro.Model.Users;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,6 +14,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 public class UserStatsDTO {
     private String leetcodeUsername;
+    private Users user;
     private int easyCount;
     private int mediumCount;
     private int hardCount;

@@ -6,4 +6,6 @@ import lombok.Setter;
 @Setter
 public class OnboardingRequestDTO {
     private String leetUsername;
+    private String course;
+    private Integer semester;
 }

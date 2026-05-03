@@ -19,6 +19,7 @@ public class UserStatsService {
                 .stream()
                 .map(stats -> new UserStatsDTO(
                         stats.getLeetcodeUsername(),
+                        stats.getUser(),
                         stats.getEasyCount(),
                         stats.getMediumCount(),
                         stats.getHardCount(),
