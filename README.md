@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="React-Frontend/public/favicon.svg" alt="LeetBoard Logo" width="64" height="64"/>
+<img src="React-Frontend/public/favicon.svg" alt="LeetBoard Logo" width="128" height="128"/>
 
 # LeetBoard
 

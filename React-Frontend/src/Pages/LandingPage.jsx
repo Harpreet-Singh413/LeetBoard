@@ -14,7 +14,10 @@ export default function LandingPage() {
             <Code2 size={16} />
             <span>LeetCode progress, made visible</span>
           </div>
-          <h1 className="hero-title">LeetBoard</h1>
+          <h1 className="hero-title" style={{ display: 'flex', alignItems: 'center', gap: '0.2em' }}>
+            <img src="/favicon.svg" alt="LeetBoard Logo" style={{ width: '1em', height: '1em', borderRadius: '24%' }} />
+            LeetBoard
+          </h1>
           <p className="hero-subtitle">
             Track solved problems, compare difficulty mix, and see where you stand on a clean competitive leaderboard.
           </p>

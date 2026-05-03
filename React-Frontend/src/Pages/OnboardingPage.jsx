@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowRight, Loader2, UserCircle } from 'lucide-react';
+import { ArrowRight, Loader2 } from 'lucide-react';
 import api from '../Api/axios';
 
 export default function OnboardingPage() {
@@ -43,8 +43,8 @@ export default function OnboardingPage() {
   return (
     <div className="onboarding-page">
       <div className="onboarding-card">
-        <div className="icon-wrapper">
-          <UserCircle size={48} className="text-accent" />
+        <div style={{ marginBottom: '1.5rem' }}>
+          <img src="/favicon.svg" alt="LeetBoard Logo" width="64" height="64" />
         </div>
         <h2>Welcome to LeetBoard</h2>
         <p className="subtitle">Link your LeetCode account to get started.</p>

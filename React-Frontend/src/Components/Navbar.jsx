@@ -1,5 +1,5 @@
 import { NavLink, useNavigate } from 'react-router-dom';
-import { BarChart3, Braces, LogOut, Trophy } from 'lucide-react';
+import { BarChart3, LogOut, Trophy } from 'lucide-react';
 
 export default function Navbar() {
   const navigate = useNavigate();
@@ -12,9 +12,7 @@ export default function Navbar() {
   return (
     <nav className="navbar">
       <div className="navbar-brand">
-        <span className="brand-mark">
-          <Braces size={18} />
-        </span>
+        <img src="/favicon.svg" alt="LeetBoard Logo" width="36" height="36" />
         <span><span className="brand-accent">Leet</span>Board</span>
       </div>
       <div className="navbar-links">
