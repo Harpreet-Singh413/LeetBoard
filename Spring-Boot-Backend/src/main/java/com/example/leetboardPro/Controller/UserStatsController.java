@@ -1,10 +1,12 @@
 package com.example.leetboardPro.Controller;
 
 import com.example.leetboardPro.DTO.UserStatsDTO;
+import com.example.leetboardPro.Model.Users;
 import com.example.leetboardPro.Service.UserStatsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,5 +48,17 @@ public class UserStatsController {
         else {
             return new ResponseEntity<List<UserStatsDTO>>(leaderboard,HttpStatus.OK);
         }
+    }
+
+    @GetMapping("/stats/me")
+    public ResponseEntity<UserStatsDTO> getMyStats(@AuthenticationPrincipal Users currentUser) {
+        if (currentUser == null) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+        UserStatsDTO stats = userStatsService.getUserStats(currentUser.getId());
+        if (stats == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(stats, HttpStatus.OK);
     }
 }

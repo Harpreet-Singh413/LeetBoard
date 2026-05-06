@@ -1,9 +1,10 @@
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import LandingPage from './Pages/LandingPage';
 import OnboardingPage from './Pages/OnboardingPage';
 import DashboardPage from './Pages/DashboardPage';
 import LeaderboardPage from './Pages/LeaderboardPage';
+import ProfilePage from './Pages/ProfilePage';
 import Navbar from './Components/Navbar';
 import './App.css';
 
@@ -27,6 +28,16 @@ function AuthRedirectRoute({ children }) {
 
 function App() {
   const location = useLocation();
+  const [theme, setTheme] = useState(localStorage.getItem('theme') || 'light');
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === 'light' ? 'dark' : 'light'));
+  };
 
   // Extract token from URL if it exists (from OAuth redirect)
   useEffect(() => {
@@ -41,7 +52,9 @@ function App() {
 
   return (
     <div className="app-container">
-      {location.pathname !== '/' && location.pathname !== '/onboarding' && <Navbar />}
+      {location.pathname !== '/' && location.pathname !== '/onboarding' && (
+        <Navbar theme={theme} toggleTheme={toggleTheme} />
+      )}
       
       <main className="main-content">
         <Routes>
@@ -67,6 +80,14 @@ function App() {
             element={
               <ProtectedRoute>
                 <LeaderboardPage />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/profile" 
+            element={
+              <ProtectedRoute>
+                <ProfilePage />
               </ProtectedRoute>
             } 
           />

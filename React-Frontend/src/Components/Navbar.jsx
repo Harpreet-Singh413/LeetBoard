@@ -1,7 +1,7 @@
 import { NavLink, useNavigate } from 'react-router-dom';
-import { BarChart3, LogOut, Trophy } from 'lucide-react';
+import { BarChart3, LogOut, Trophy, User, Sun, Moon } from 'lucide-react';
 
-export default function Navbar() {
+export default function Navbar({ theme, toggleTheme }) {
   const navigate = useNavigate();
 
   const handleLogout = () => {
@@ -24,6 +24,15 @@ export default function Navbar() {
           <Trophy size={18} />
           <span>Leaderboard</span>
         </NavLink>
+        <NavLink to="/profile" className={({ isActive }) => `nav-link ${isActive ? 'active' : ''}`}>
+          <User size={18} />
+          <span>Profile</span>
+        </NavLink>
+        
+        <button onClick={toggleTheme} className="btn-icon theme-toggle" aria-label="Toggle theme" title="Toggle theme">
+          {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
+        </button>
+
         <button onClick={handleLogout} className="btn-icon" aria-label="Log out" title="Log out">
           <LogOut size={18} />
         </button>

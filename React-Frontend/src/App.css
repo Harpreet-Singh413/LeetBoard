@@ -20,7 +20,7 @@
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(246, 247, 243, 0.88);
+  background: color-mix(in srgb, var(--bg-primary), transparent 5%);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--border);
 }
@@ -67,8 +67,8 @@
 
 .nav-link:hover, .nav-link.active {
   color: var(--text-primary);
-  background: #ffffff;
-  box-shadow: 0 6px 16px rgba(17, 24, 39, 0.07);
+  background: var(--bg-secondary);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
 }
 
 .btn-icon {
@@ -84,7 +84,7 @@
 
 .btn-icon:hover {
   color: var(--text-primary);
-  background: #fff;
+  background: var(--bg-secondary);
 }
 
 .landing-page {
@@ -242,7 +242,7 @@
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   border: 1px solid var(--border);
-  background: rgba(255, 255, 255, 0.7);
+  background: color-mix(in srgb, var(--surface), transparent 30%);
   border-radius: var(--radius-lg);
   overflow: hidden;
 }
@@ -389,7 +389,7 @@
   width: 40px;
   height: 40px;
   border-radius: var(--radius-sm);
-  background: color-mix(in srgb, var(--accent-color) 12%, white);
+  background: color-mix(in srgb, var(--accent-color) 12%, var(--bg-secondary));
 }
 
 .stat-title {
@@ -407,7 +407,7 @@
 .stat-rule {
   height: 6px;
   width: 100%;
-  background: linear-gradient(90deg, var(--accent-color), color-mix(in srgb, var(--accent-color) 18%, white));
+  background: linear-gradient(90deg, var(--accent-color), color-mix(in srgb, var(--accent-color) 18%, var(--bg-secondary)));
   border-radius: 999px;
 }
 
@@ -486,7 +486,7 @@
   font-weight: 800;
   color: var(--text-secondary);
   border-bottom: 1px solid var(--border);
-  background: #f9faf5;
+  background: var(--bg-muted);
   font-size: 0.86rem;
   text-transform: uppercase;
   text-align: center;
@@ -510,7 +510,7 @@
 }
 
 .leaderboard-table tr:hover td {
-  background: #fbfcf8;
+  background: var(--bg-muted);
 }
 
 .rank-cell {
@@ -555,6 +555,20 @@
 .top-1:hover td { background: #fef3c7; }
 .top-2:hover td { background: #eef2f7; }
 .top-3:hover td { background: #ffedd5; }
+
+/* Dark mode overrides for leaderboard ranks */
+[data-theme='dark'] .top-1 td { background: rgba(251, 191, 36, 0.1); }
+[data-theme='dark'] .top-2 td { background: rgba(148, 163, 184, 0.1); }
+[data-theme='dark'] .top-3 td { background: rgba(180, 83, 9, 0.1); }
+
+[data-theme='dark'] .top-1:hover td { background: rgba(251, 191, 36, 0.15); }
+[data-theme='dark'] .top-2:hover td { background: rgba(148, 163, 184, 0.15); }
+[data-theme='dark'] .top-3:hover td { background: rgba(180, 83, 9, 0.15); }
+
+[data-theme='dark'] .avatar {
+  background: var(--bg-muted);
+  border: 1px solid var(--border);
+}
 
 .empty-state {
   padding: 4rem;
