@@ -19,7 +19,7 @@ public class CorsConfig {
         configuration.setAllowedOrigins(Arrays.asList(
                 "http://localhost:3000",
                 "http://localhost:5173",
-                "leet-board-ebon.vercel.app"
+                "https://leet-board-ebon.vercel.app"
         ));
 
         // Allow all HTTP methods

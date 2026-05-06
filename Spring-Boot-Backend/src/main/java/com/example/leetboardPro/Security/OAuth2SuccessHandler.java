@@ -42,8 +42,8 @@ public class OAuth2SuccessHandler extends SimpleUrlAuthenticationSuccessHandler 
         // Redirect to frontend with JWT as query param
         // Frontend reads it once, stores in memory/localStorage
         String redirectUrl = user.isOnboarded()
-                ? "http://localhost:3000/dashboard?token=" + token
-                : "http://localhost:3000/onboarding?token=" + token;
+                ? "https://leet-board-ebon.vercel.app//dashboard?token=" + token
+                : "https://leet-board-ebon.vercel.app//onboarding?token=" + token;
 
        getRedirectStrategy().sendRedirect(request, response, redirectUrl);
     
