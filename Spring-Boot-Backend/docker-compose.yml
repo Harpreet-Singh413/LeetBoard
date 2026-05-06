@@ -6,6 +6,6 @@ services:
       - "8080:8080"
     environment:
       DATABASE_URL: jdbc:postgresql://ep-frosty-meadow-ao3jqrh9-pooler.c-2.ap-southeast-1.aws.neon.tech/neondb?user=neondb_owner&password=npg_cbvTmSqeB6o3&sslmode=require&channelBinding=require
-      DB_USERNAME: neondb
+      DB_USERNAME: neondb_owner
       DB_PASSWORD: npg_cbvTmSqeB6o3&
 
