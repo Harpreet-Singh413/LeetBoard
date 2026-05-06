@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { User, Mail, GraduationCap, Calendar, CheckCircle2, Loader2, AlertCircle } from 'lucide-react';
-import api from '../Api/Axios';
+import api from '../Api/axios';
 import StatCard from '../Components/StatCard';
 
 export default function ProfilePage() {
@@ -112,38 +112,38 @@ export default function ProfilePage() {
           </div>
 
           <div className="profile-stats-grid">
-            <StatCard 
-              title="Easy" 
-              value={easyCount} 
-              icon={<CheckCircle2 size={20} />} 
-              color="#00b8a3" 
+            <StatCard
+              title="Easy"
+              value={easyCount}
+              icon={<CheckCircle2 size={20} />}
+              color="#00b8a3"
             />
-            <StatCard 
-              title="Medium" 
-              value={mediumCount} 
-              icon={<CheckCircle2 size={20} />} 
-              color="#ffc01e" 
+            <StatCard
+              title="Medium"
+              value={mediumCount}
+              icon={<CheckCircle2 size={20} />}
+              color="#ffc01e"
             />
-            <StatCard 
-              title="Hard" 
-              value={hardCount} 
-              icon={<CheckCircle2 size={20} />} 
-              color="#ef4743" 
+            <StatCard
+              title="Hard"
+              value={hardCount}
+              icon={<CheckCircle2 size={20} />}
+              color="#ef4743"
             />
             <div className="total-stats-card glass-card">
               <div className="total-label">Total Solved</div>
               <div className="total-value">{totalSolved}</div>
               <div className="total-progress-bar">
-                <div 
-                  className="progress-segment easy" 
+                <div
+                  className="progress-segment easy"
                   style={{ width: `${(easyCount / totalSolved) * 100}%` }}
                 />
-                <div 
-                  className="progress-segment medium" 
+                <div
+                  className="progress-segment medium"
                   style={{ width: `${(mediumCount / totalSolved) * 100}%` }}
                 />
-                <div 
-                  className="progress-segment hard" 
+                <div
+                  className="progress-segment hard"
                   style={{ width: `${(hardCount / totalSolved) * 100}%` }}
                 />
               </div>
