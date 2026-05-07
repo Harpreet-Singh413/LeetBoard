@@ -2,7 +2,7 @@ import axios from 'axios';
 
 const api = axios.create({
   // the proxy in vite config forwards /api to http://localhost:8080
-  baseURL: '/api', 
+  baseURL: 'https://leetboard-backend.onrender.com/api',
 });
 
 // Add a request interceptor to attach the JWT token
