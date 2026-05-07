@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { jwtDecode } from 'jwt-decode';
 import { AlertTriangle, Award, CheckCircle2, Flame, Gauge, Loader2, Target, TrendingUp } from 'lucide-react';
 import api from '../api/api';
 import StatCard from '../Components/StatCard';
@@ -12,13 +11,7 @@ export default function DashboardPage() {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const token = localStorage.getItem('token');
-        if (!token) throw new Error("No token found");
-
-        const decoded = jwtDecode(token);
-        const userId = decoded.id;
-
-        const response = await api.get(`/stats/${userId}`);
+        const response = await api.get('/stats/me');
         setStats(response.data);
       } catch (err) {
         console.error(err);
