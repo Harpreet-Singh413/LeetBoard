@@ -3,7 +3,7 @@ import heroArt from '../assets/hero.png';
 
 export default function LandingPage() {
   const handleLogin = () => {
-    window.location.href = 'http://localhost:8080/oauth2/authorization/google';
+    window.location.href = 'https://leetboard-backend.onrender.com/oauth2/authorization/google';
   };
 
   return (
