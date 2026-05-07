@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Trophy, Medal, Loader2, AlertTriangle } from 'lucide-react';
-import api from '../Api/axios';
+import api from '../api/axios';
 
 export default function LeaderboardPage() {
   const [leaderboard, setLeaderboard] = useState([]);

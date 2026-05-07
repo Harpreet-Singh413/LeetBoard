@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { jwtDecode } from 'jwt-decode';
 import { AlertTriangle, Award, CheckCircle2, Flame, Gauge, Loader2, Target, TrendingUp } from 'lucide-react';
-import api from '../Api/axios';
+import api from '../api/axios';
 import StatCard from '../Components/StatCard';
 
 export default function DashboardPage() {
