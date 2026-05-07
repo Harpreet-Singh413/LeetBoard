@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { User, Mail, GraduationCap, Calendar, CheckCircle2, Loader2, AlertCircle } from 'lucide-react';
-import api from '../api/axios';
+import api from '../api/api';
 import StatCard from '../Components/StatCard';
 
 export default function ProfilePage() {

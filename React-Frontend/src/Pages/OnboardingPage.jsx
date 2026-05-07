@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight, Loader2 } from 'lucide-react';
-import api from '../api/axios';
+import api from '../api/api';
 
 export default function OnboardingPage() {
   const [username, setUsername] = useState('');
