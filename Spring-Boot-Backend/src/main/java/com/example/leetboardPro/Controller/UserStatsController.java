@@ -46,17 +46,6 @@ public class UserStatsController {
         }
     }
 
-    @GetMapping("/stats/{id}")
-    public ResponseEntity<UserStatsDTO> getUserStats(@PathVariable Long id){
-        UserStatsDTO user = userStatsService.getUserStats(id);
-        if(user == null){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(user,HttpStatus.OK);
-    }
-
-
-
     @GetMapping("/stats/me")
     public ResponseEntity<UserStatsDTO> getMyStats(@AuthenticationPrincipal Users currentUser) {
         if (currentUser == null) {
@@ -68,6 +57,16 @@ public class UserStatsController {
         }
         return new ResponseEntity<>(stats, HttpStatus.OK);
     }
+
+    @GetMapping("/stats/{id}")
+    public ResponseEntity<UserStatsDTO> getUserStats(@PathVariable Long id){
+        UserStatsDTO user = userStatsService.getUserStats(id);
+        if(user == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(user,HttpStatus.OK);
+    }
+
 
     @PostMapping("/stats/sync")
     public ResponseEntity<UserStatsDTO> syncMyStats(@AuthenticationPrincipal Users currentUser) {
