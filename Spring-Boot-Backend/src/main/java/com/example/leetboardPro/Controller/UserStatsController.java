@@ -35,15 +35,6 @@ public class UserStatsController {
         return ResponseEntity.ok(stats);
     }
 
-    @GetMapping("/stats/{id}")
-    public ResponseEntity<UserStatsDTO> getUserStats(@PathVariable Long id){
-        UserStatsDTO user = userStatsService.getUserStats(id);
-        if(user == null){
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        return new ResponseEntity<>(user,HttpStatus.OK);
-    }
-
     @GetMapping("/stats/leaderboard")
     public ResponseEntity<List<UserStatsDTO>> getLeaderBoard(){
         List<UserStatsDTO> leaderboard = userStatsService.getLeaderBoard();
@@ -54,6 +45,17 @@ public class UserStatsController {
             return new ResponseEntity<List<UserStatsDTO>>(leaderboard,HttpStatus.OK);
         }
     }
+
+    @GetMapping("/stats/{id}")
+    public ResponseEntity<UserStatsDTO> getUserStats(@PathVariable Long id){
+        UserStatsDTO user = userStatsService.getUserStats(id);
+        if(user == null){
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(user,HttpStatus.OK);
+    }
+
+
 
     @GetMapping("/stats/me")
     public ResponseEntity<UserStatsDTO> getMyStats(@AuthenticationPrincipal Users currentUser) {
