@@ -9,8 +9,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import com.example.leetboardPro.Service.LeetCodeService;
 
 import java.util.List;
 
@@ -20,6 +22,9 @@ public class UserStatsController {
 
     @Autowired
     private UserStatsService userStatsService;
+
+    @Autowired
+    private LeetCodeService leetCodeService;
 
     @GetMapping("/stats")
     public ResponseEntity<List<UserStatsDTO>> getAllStats(){
@@ -60,5 +65,14 @@ public class UserStatsController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
         return new ResponseEntity<>(stats, HttpStatus.OK);
+    }
+
+    @PostMapping("/stats/sync")
+    public ResponseEntity<UserStatsDTO> syncMyStats(@AuthenticationPrincipal Users currentUser) {
+        if (currentUser == null || currentUser.getLeetUsername() == null) {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+        UserStatsDTO updated = leetCodeService.syncAndSaveUserStats(currentUser);
+        return ResponseEntity.ok(updated);
     }
 }

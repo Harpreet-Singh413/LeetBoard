@@ -302,12 +302,43 @@ button {
 .stats-header {
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center;
+}
+
+.stats-header-info {
+  display: flex;
+  flex-direction: column;
 }
 
 .last-sync {
   font-size: 0.8rem;
   color: var(--text-muted);
+}
+
+.btn-sync {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-muted);
+  color: var(--text-secondary);
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: all var(--transition-normal);
+  border: 1px solid var(--border);
+}
+
+.btn-sync:hover:not(:disabled) {
+  background: var(--accent-primary);
+  color: white;
+  border-color: var(--accent-primary);
+  transform: translateY(-1px);
+}
+
+.btn-sync.syncing {
+  opacity: 0.8;
+  cursor: wait;
 }
 
 .profile-stats-grid {

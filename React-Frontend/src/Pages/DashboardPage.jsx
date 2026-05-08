@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
-import { AlertTriangle, Award, CheckCircle2, Flame, Gauge, Loader2, Target, TrendingUp } from 'lucide-react';
+import { AlertTriangle, Award, CheckCircle2, Flame, Gauge, Loader2, Target, TrendingUp, RefreshCw } from 'lucide-react';
 import api from '../api/api';
 import StatCard from '../Components/StatCard';
 
 export default function DashboardPage() {
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [syncing, setSyncing] = useState(false);
   const [error, setError] = useState('');
 
   useEffect(() => {
@@ -23,6 +24,18 @@ export default function DashboardPage() {
 
     fetchStats();
   }, []);
+
+  const handleSync = async () => {
+    try {
+      setSyncing(true);
+      const response = await api.post('/stats/sync');
+      setStats(response.data);
+    } catch (err) {
+      console.error('Error syncing stats:', err);
+    } finally {
+      setSyncing(false);
+    }
+  };
 
   if (loading) {
     return (
@@ -45,10 +58,19 @@ export default function DashboardPage() {
   return (
     <div className="dashboard-page fade-in">
       <header className="dashboard-header">
-        <div>
+        <div className="dashboard-header-main">
           <span className="eyebrow">Personal stats</span>
           <h1>Your Dashboard</h1>
           <p>Keep an eye on your solved count and difficulty balance.</p>
+          <button 
+            className={`btn-sync ${syncing ? 'syncing' : ''}`} 
+            onClick={handleSync}
+            disabled={syncing}
+            style={{ marginTop: '1rem' }}
+          >
+            <RefreshCw size={16} className={syncing ? 'spinner' : ''} />
+            <span>{syncing ? 'Syncing...' : 'Sync Now'}</span>
+          </button>
         </div>
         <div className="user-badge">
           <Award />

@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
-import { User, Mail, GraduationCap, Calendar, CheckCircle2, Loader2, AlertCircle } from 'lucide-react';
+import { User, Mail, GraduationCap, Calendar, CheckCircle2, Loader2, AlertCircle, RefreshCw } from 'lucide-react';
 import api from '../api/api';
 import StatCard from '../Components/StatCard';
 
 export default function ProfilePage() {
   const [profileData, setProfileData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [syncing, setSyncing] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -23,6 +24,19 @@ export default function ProfilePage() {
 
     fetchProfile();
   }, []);
+
+  const handleSync = async () => {
+    try {
+      setSyncing(true);
+      const response = await api.post('/stats/sync');
+      setProfileData(response.data);
+    } catch (err) {
+      console.error('Error syncing stats:', err);
+      // We could show a toast here, but for now we'll just log it
+    } finally {
+      setSyncing(false);
+    }
+  };
 
   if (loading) {
     return (
@@ -105,10 +119,21 @@ export default function ProfilePage() {
         {/* Stats Breakdown Section */}
         <div className="stats-section">
           <div className="stats-header">
-            <h3>LeetCode Stats</h3>
-            <span className="last-sync">
-              Last synced: {new Date(lastSync).toLocaleString()}
-            </span>
+            <div className="stats-header-info">
+              <h3>LeetCode Stats</h3>
+              <span className="last-sync">
+                Last synced: {new Date(lastSync).toLocaleString()}
+              </span>
+            </div>
+            <button 
+              className={`btn-sync ${syncing ? 'syncing' : ''}`} 
+              onClick={handleSync}
+              disabled={syncing}
+              title="Sync stats with LeetCode"
+            >
+              <RefreshCw size={16} className={syncing ? 'spinner' : ''} />
+              <span>{syncing ? 'Syncing...' : 'Sync Now'}</span>
+            </button>
           </div>
 
           <div className="profile-stats-grid">
