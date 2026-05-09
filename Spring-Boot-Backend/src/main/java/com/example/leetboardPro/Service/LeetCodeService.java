@@ -48,6 +48,7 @@ public class LeetCodeService {
         rawResponse.getData().getMatchedUser().getSubmitStats().getAcSubmissionNum()
                 .forEach(stat -> {
                     switch (stat.getDifficulty()) {
+                        case "All" -> stats.setTotalCount(stat.getCount());
                         case "Easy" -> stats.setEasyCount(stat.getCount());
                         case "Medium" -> stats.setMediumCount(stat.getCount());
                         case "Hard" -> stats.setHardCount(stat.getCount());
@@ -58,6 +59,7 @@ public class LeetCodeService {
         return new UserStatsDTO(
                 saved.getLeetcodeUsername(),
                 saved.getUser(),
+                saved.getTotalCount(),
                 saved.getEasyCount(),
                 saved.getMediumCount(),
                 saved.getHardCount(),

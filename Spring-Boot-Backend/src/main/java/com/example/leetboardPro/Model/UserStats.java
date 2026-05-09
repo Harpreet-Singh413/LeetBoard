@@ -19,6 +19,7 @@ public class UserStats {
     private Users user;
 
     private String leetcodeUsername;
+    private int totalCount;
     private int easyCount;
     private int mediumCount;
     private int hardCount;

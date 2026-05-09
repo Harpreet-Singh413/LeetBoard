@@ -13,5 +13,5 @@ public interface UserStatsRepository extends JpaRepository<UserStats,Long> {
 
     Optional<UserStats> findByUserId(Long id);
 
-    List<UserStats> findAllByOrderByHardCountDescMediumCountDescEasyCountDesc();
+    List<UserStats> findAllByOrderByTotalCountDescHardCountDescMediumCountDescEasyCountDesc();
 }

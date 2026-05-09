@@ -15,6 +15,7 @@ import java.time.LocalDateTime;
 public class UserStatsDTO {
     private String leetcodeUsername;
     private Users user;
+    private int totalCount;
     private int easyCount;
     private int mediumCount;
     private int hardCount;

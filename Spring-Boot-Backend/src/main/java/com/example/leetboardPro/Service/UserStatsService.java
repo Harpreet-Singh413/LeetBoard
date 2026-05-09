@@ -20,6 +20,7 @@ public class UserStatsService {
                 .map(stats -> new UserStatsDTO(
                         stats.getLeetcodeUsername(),
                         stats.getUser(),
+                        stats.getTotalCount(),
                         stats.getEasyCount(),
                         stats.getMediumCount(),
                         stats.getHardCount(),
@@ -35,7 +36,7 @@ public class UserStatsService {
     }
 
     public List<UserStatsDTO> getLeaderBoard() {
-        return userStatsRepository.findAllByOrderByHardCountDescMediumCountDescEasyCountDesc()
+        return userStatsRepository.findAllByOrderByTotalCountDescHardCountDescMediumCountDescEasyCountDesc()
                 .stream()
                 .map(UserStatsMapper::toUserStatsDto)
                 .toList();

@@ -7,6 +7,7 @@ public class UserStatsMapper {
     public static UserStats toUserStatsEntity(UserStatsDTO dto){
         UserStats stats = new UserStats();
         stats.setLeetcodeUsername(dto.getLeetcodeUsername());
+        stats.setTotalCount(dto.getTotalCount());
         stats.setEasyCount(dto.getEasyCount());
         stats.setMediumCount(dto.getMediumCount());
         stats.setHardCount(dto.getHardCount());
@@ -18,6 +19,7 @@ public class UserStatsMapper {
         UserStatsDTO dto = new UserStatsDTO();
         dto.setUser(stats.getUser());
         dto.setLeetcodeUsername(stats.getLeetcodeUsername());
+        dto.setTotalCount(stats.getTotalCount());
         dto.setEasyCount(stats.getEasyCount());
         dto.setMediumCount(stats.getMediumCount());
         dto.setHardCount(stats.getHardCount());

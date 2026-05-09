@@ -85,7 +85,7 @@ export default function LeaderboardPage() {
                     </div>
                   </td>
                   <td>{user.user.username || 'Unknown'}</td>
-                  <td className="font-bold text-accent">{(user.easyCount || 0) + (user.mediumCount || 0) + (user.hardCount || 0)}</td>
+                  <td className="font-bold text-accent">{user.totalCount || 0}</td>
                   <td className="hide-mobile text-easy">{user.easyCount || 0}</td>
                   <td className="hide-mobile text-medium">{user.mediumCount || 0}</td>
                   <td className="hide-mobile text-hard">{user.hardCount || 0}</td>
