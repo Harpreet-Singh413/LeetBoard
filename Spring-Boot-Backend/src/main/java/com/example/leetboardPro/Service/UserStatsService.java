@@ -30,16 +30,15 @@ public class UserStatsService {
     }
 
     public UserStatsDTO getUserStats(Long id) {
-        UserStats stats =  userStatsRepository.findByUserId(id).orElse(null);
-        UserStatsDTO dto = toUserStatsDto(stats);
-        return dto;
+        return userStatsRepository.findByUserId(id)
+                .map(UserStatsMapper::toUserStatsDto)
+                .orElse(null);
     }
 
     public List<UserStatsDTO> getLeaderBoard() {
         return userStatsRepository.findAllByOrderByTotalCountDescHardCountDescMediumCountDescEasyCountDesc()
                 .stream()
                 .map(UserStatsMapper::toUserStatsDto)
-                .orElse(null)
                 .toList();
     }
 }
