@@ -39,6 +39,7 @@ public class UserStatsService {
         return userStatsRepository.findAllByOrderByTotalCountDescHardCountDescMediumCountDescEasyCountDesc()
                 .stream()
                 .map(UserStatsMapper::toUserStatsDto)
+                .orElse(null)
                 .toList();
     }
 }
