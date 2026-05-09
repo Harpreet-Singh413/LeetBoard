@@ -59,8 +59,7 @@ export default function ProfilePage() {
     );
   }
 
-  const { user, easyCount, mediumCount, hardCount, lastSync } = profileData;
-  const totalSolved = easyCount + mediumCount + hardCount;
+  const { user, easyCount, mediumCount, hardCount, lastSync, totalCount } = profileData;
 
   return (
     <div className="profile-page animate-in">
@@ -125,8 +124,8 @@ export default function ProfilePage() {
                 Last synced: {new Date(lastSync).toLocaleString()}
               </span>
             </div>
-            <button 
-              className={`btn-sync ${syncing ? 'syncing' : ''}`} 
+            <button
+              className={`btn-sync ${syncing ? 'syncing' : ''}`}
               onClick={handleSync}
               disabled={syncing}
               title="Sync stats with LeetCode"
@@ -157,19 +156,19 @@ export default function ProfilePage() {
             />
             <div className="total-stats-card glass-card">
               <div className="total-label">Total Solved</div>
-              <div className="total-value">{totalSolved}</div>
+              <div className="total-value">{totalCount}</div>
               <div className="total-progress-bar">
                 <div
                   className="progress-segment easy"
-                  style={{ width: `${(easyCount / totalSolved) * 100}%` }}
+                  style={{ width: `${(easyCount / totalCount) * 100}%` }}
                 />
                 <div
                   className="progress-segment medium"
-                  style={{ width: `${(mediumCount / totalSolved) * 100}%` }}
+                  style={{ width: `${(mediumCount / totalCount) * 100}%` }}
                 />
                 <div
                   className="progress-segment hard"
-                  style={{ width: `${(hardCount / totalSolved) * 100}%` }}
+                  style={{ width: `${(hardCount / totalCount) * 100}%` }}
                 />
               </div>
             </div>

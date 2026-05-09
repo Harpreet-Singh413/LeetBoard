@@ -75,7 +75,7 @@ export default function LeaderboardPage() {
                       {index === 0 && <Medal className="gold-medal" size={20} />}
                       {index === 1 && <Medal className="silver-medal" size={20} />}
                       {index === 2 && <Medal className="bronze-medal" size={20} />}
-                      {index > 2 && <span>#{index + 1}</span>}
+                      <span>#{index + 1}</span>
                     </div>
                   </td>
                   <td>
@@ -85,7 +85,7 @@ export default function LeaderboardPage() {
                     </div>
                   </td>
                   <td>{user.user.username || 'Unknown'}</td>
-                  <td className="font-bold text-accent">{(user.easyCount + user.mediumCount + user.hardCount) || 0}</td>
+                  <td className="font-bold text-accent">{user.totalCount || 0}</td>
                   <td className="hide-mobile text-easy">{user.easyCount || 0}</td>
                   <td className="hide-mobile text-medium">{user.mediumCount || 0}</td>
                   <td className="hide-mobile text-hard">{user.hardCount || 0}</td>

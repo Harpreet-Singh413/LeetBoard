@@ -81,7 +81,7 @@ export default function DashboardPage() {
       <div className="stats-grid">
         <StatCard
           title="Total Solved"
-          value={(stats?.easyCount || 0) + (stats?.mediumCount || 0) + (stats?.hardCount || 0)}
+          value={stats?.totalCount || 0}
           icon={<Flame />}
           color="#f97316"
         />
