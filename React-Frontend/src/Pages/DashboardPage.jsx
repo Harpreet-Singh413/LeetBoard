@@ -62,8 +62,8 @@ export default function DashboardPage() {
           <span className="eyebrow">Personal stats</span>
           <h1>Your Dashboard</h1>
           <p>Keep an eye on your solved count and difficulty balance.</p>
-          <button 
-            className={`btn-sync ${syncing ? 'syncing' : ''}`} 
+          <button
+            className={`btn-sync ${syncing ? 'syncing' : ''}`}
             onClick={handleSync}
             disabled={syncing}
             style={{ marginTop: '1rem' }}
