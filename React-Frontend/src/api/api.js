@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'https://leetboard-backend.onrender.com/api',
+  baseURL: 'https://leetboard-s9qd.onrender.com/api',
 });
 
 // Add a request interceptor to attach the JWT token
